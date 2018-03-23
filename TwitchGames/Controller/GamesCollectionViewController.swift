@@ -14,11 +14,11 @@ private let reuseIdentifier = "Cell"
 class GamesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NetworkStatusListener {
     private let dataManager = DataManager.sharedInstance
     private let refreshControl = UIRefreshControl()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPullToRefresh()
-
+        
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
@@ -39,6 +39,8 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
     func networkStatusDidChange(status: Reachability.Connection) {
         if (status == .none) {
             showNetworkStatusAlert()
+        } else {
+            reloadData()
         }
     }
     
@@ -48,13 +50,19 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     // MARK: - Methods to fetch data
     
     func reloadData() {
         dataManager.getPopularGames {
             self.collectionView?.reloadSections(IndexSet(integer: 0))
-        } 
+            self.persistGames()
+        }
+    }
+    
+    func persistGames() {
+        self.dataManager.deletePersistedGames()
+        self.dataManager.persistGames()
     }
     
     func setupPullToRefresh() {
@@ -91,26 +99,28 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
         
         return CGSize(width: width, height: height)
     }
-
+    
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailGameTableViewController, let row = self.collectionView?.indexPathsForSelectedItems?.first?.row {
             destination.dataManager = self.dataManager
             destination.detailedGame = self.dataManager.games[row]
         }
     }
-
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.collectionView?.backgroundView?.alpha = 0
-        //Connection failed and none data was fetched
-        if self.dataManager.games.count == 0 && ReachabilityManager.shared.reachability.connection == .none {
+        
+        if self.dataManager.games.count > 0 {
+            return self.dataManager.games.count
+        } else {
             self.collectionView?.backgroundView?.alpha = 1
             do {
                 let backgroundView = try FailedToFetchDataViewController.instanceView(with: "Check your internet connection!")
@@ -121,9 +131,11 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
                 print("Error showing the failed to fetch viewController")
             }
         }
+        
+        
         return self.dataManager.games.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "gameCell", for: indexPath) as? GameCollectionViewCell else { return UICollectionViewCell() }
         cell.game = dataManager.games[indexPath.row]

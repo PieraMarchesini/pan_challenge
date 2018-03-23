@@ -18,6 +18,7 @@ struct Games: Decodable {
     }
     struct GameDetail: Decodable {
         let _id: Int
+        let popularity: Int
         let name: String
         let box: Image
     }
