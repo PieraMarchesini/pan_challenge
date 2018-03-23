@@ -12,7 +12,6 @@ final class DataManager {
     static let sharedInstance = DataManager()
     private let apiKey = "client_id=nw8ybs53s85wa1in5qu55fnjkphv2y"
     var games = [Games.Game]()
-    var nextJSON = ""
     
     fileprivate init() { }
     
@@ -26,7 +25,6 @@ final class DataManager {
                 let results = try JSONDecoder().decode(Games.self, from: data)
                 DispatchQueue.main.sync {
                     self.games = results.top
-                    self.nextJSON = results._links.next
                     completed()
                 }
             } catch let jsonErr {
@@ -44,10 +42,7 @@ final class DataManager {
             do {
                 let results = try JSONDecoder().decode(Games.self, from: data)
                 DispatchQueue.main.sync {
-                    print(self.games.count)
                     self.games += results.top
-                    print(self.games.count)
-                    self.nextJSON = results._links.next
                     completed()
                 }
             } catch let jsonErr {

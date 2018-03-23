@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Reachability
 
 private let reuseIdentifier = "Cell"
 
-class GamesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class GamesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NetworkStatusListener {
     private let dataManager = DataManager.sharedInstance
     private let refreshControl = UIRefreshControl()
 
@@ -22,7 +23,32 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ReachabilityManager.shared.addListener(listener: self)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ReachabilityManager.shared.removeListener(listener: self)
+    }
+    
+    // MARK: - Network Status
+    
+    func networkStatusDidChange(status: Reachability.Connection) {
+        switch status {
+        case .none:
+            debugPrint("ViewController: Network became unreachable")
+        case .wifi:
+            debugPrint("ViewController: Network reachable through WiFi")
+        case .cellular:
+            debugPrint("ViewController: Network reachable through Cellular Data")
+        }
+    }
 
+    // MARK: - Methods to fetch data
+    
     func reloadData() {
         dataManager.getPopularGames {
             self.collectionView?.reloadSections(IndexSet(integer: 0))
@@ -41,13 +67,16 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
         self.refreshControl.addTarget(self, action: #selector(refreshPopularGames(_:)), for: .valueChanged)
     }
     
-    @objc private func refreshPopularGames(_ sender: Any) {
+    @objc
+    private func refreshPopularGames(_ sender: Any) {
         self.reloadData()
         self.refreshControl.endRefreshing()
     }
     
     // MARK : - Flow Layout
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //Responsive cells
         var width = UIScreen.main.bounds.width/2-15
         if Device.thisDevice == .iPad {
             width = UIScreen.main.bounds.width/3-14
@@ -72,7 +101,6 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.dataManager.games.count
     }
@@ -96,36 +124,4 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
             })
         }
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }

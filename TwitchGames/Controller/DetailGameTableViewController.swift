@@ -14,7 +14,6 @@ class DetailGameTableViewController: UITableViewController {
     var dataManager: DataManager?
     var headerView: DetailHeaderView!
     var headerMaskLayer: CAShapeLayer!
-    
     private let tableHeaderViewHeight: CGFloat = 460.0
     
     override func viewDidLoad() {

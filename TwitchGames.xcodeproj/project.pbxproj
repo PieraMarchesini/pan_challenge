@@ -12,8 +12,6 @@
 		6501D7E22064A0B800F6E05E /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6501D7E12064A0B800F6E05E /* SDWebImage.framework */; };
 		6501D7E32064A0B800F6E05E /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6501D7E12064A0B800F6E05E /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6501D7E6206523BC00F6E05E /* Extensions+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501D7E5206523BC00F6E05E /* Extensions+Style.swift */; };
-		6501D7E82065452F00F6E05E /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6501D7E72065452E00F6E05E /* Reachability.framework */; };
-		6501D7E92065452F00F6E05E /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6501D7E72065452E00F6E05E /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		656F9BA82063004400F0C311 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F9BA72063004400F0C311 /* AppDelegate.swift */; };
 		656F9BAD2063004400F0C311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656F9BAB2063004400F0C311 /* Main.storyboard */; };
 		656F9BAF2063004400F0C311 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656F9BAE2063004400F0C311 /* Assets.xcassets */; };
@@ -28,6 +26,9 @@
 		656F9BDA20643AFB00F0C311 /* TwitchGames.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 656F9BD820643AFB00F0C311 /* TwitchGames.xcdatamodeld */; };
 		656F9BDC20643CC300F0C311 /* DetailGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F9BDB20643CC300F0C311 /* DetailGameTableViewController.swift */; };
 		656F9BDE20643CE400F0C311 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F9BDD20643CE400F0C311 /* DetailHeaderView.swift */; };
+		65C17A9B2065488000EE9314 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C17A9A2065488000EE9314 /* ReachabilityManager.swift */; };
+		65C17A9D206548F800EE9314 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C17A9C206548F700EE9314 /* Reachability.framework */; };
+		65C17A9E206548F800EE9314 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65C17A9C206548F700EE9314 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +49,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6501D7E32064A0B800F6E05E /* SDWebImage.framework in Embed Frameworks */,
-				6501D7E92065452F00F6E05E /* Reachability.framework in Embed Frameworks */,
+				65C17A9E206548F800EE9314 /* Reachability.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,7 +61,6 @@
 		6501D7DF2064401200F6E05E /* DetailInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoTableViewCell.swift; sourceTree = "<group>"; };
 		6501D7E12064A0B800F6E05E /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		6501D7E5206523BC00F6E05E /* Extensions+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Extensions+Style.swift"; path = "TwitchGames/Util/Extensions+Style.swift"; sourceTree = SOURCE_ROOT; };
-		6501D7E72065452E00F6E05E /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		656F9BA42063004400F0C311 /* TwitchGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitchGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656F9BA72063004400F0C311 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		656F9BAC2063004400F0C311 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +79,8 @@
 		656F9BD920643AFB00F0C311 /* TwitchGames.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TwitchGames.xcdatamodel; sourceTree = "<group>"; };
 		656F9BDB20643CC300F0C311 /* DetailGameTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGameTableViewController.swift; sourceTree = "<group>"; };
 		656F9BDD20643CE400F0C311 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
+		65C17A9A2065488000EE9314 /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		65C17A9C206548F700EE9314 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6501D7E22064A0B800F6E05E /* SDWebImage.framework in Frameworks */,
-				6501D7E82065452F00F6E05E /* Reachability.framework in Frameworks */,
+				65C17A9D206548F800EE9314 /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +106,7 @@
 		656F9B9B2063004400F0C311 = {
 			isa = PBXGroup;
 			children = (
-				6501D7E72065452E00F6E05E /* Reachability.framework */,
+				65C17A9C206548F700EE9314 /* Reachability.framework */,
 				6501D7E12064A0B800F6E05E /* SDWebImage.framework */,
 				656F9BA62063004400F0C311 /* TwitchGames */,
 				656F9BBB2063004500F0C311 /* TwitchGamesTests */,
@@ -124,15 +126,13 @@
 		656F9BA62063004400F0C311 /* TwitchGames */ = {
 			isa = PBXGroup;
 			children = (
-				656F9BCB2063EFB400F0C311 /* DataManager */,
+				656F9BCB2063EFB400F0C311 /* Manager */,
 				656F9BC82063EF9000F0C311 /* Model */,
-				656F9BC92063EF9400F0C311 /* Controller */,
 				656F9BCA2063EFA200F0C311 /* View */,
+				656F9BC92063EF9400F0C311 /* Controller */,
+				65C17A9F2065567400EE9314 /* Storyboard */,
 				656F9BC72063EF8800F0C311 /* Util */,
-				656F9BA72063004400F0C311 /* AppDelegate.swift */,
-				656F9BAB2063004400F0C311 /* Main.storyboard */,
-				656F9BAE2063004400F0C311 /* Assets.xcassets */,
-				656F9BB02063004400F0C311 /* LaunchScreen.storyboard */,
+				65C17A992065481800EE9314 /* SupportingFiles */,
 				656F9BB32063004400F0C311 /* Info.plist */,
 				656F9BD820643AFB00F0C311 /* TwitchGames.xcdatamodeld */,
 			);
@@ -186,12 +186,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		656F9BCB2063EFB400F0C311 /* DataManager */ = {
+		656F9BCB2063EFB400F0C311 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				656F9BCE2063F09300F0C311 /* DataManager.swift */,
+				65C17A9A2065488000EE9314 /* ReachabilityManager.swift */,
 			);
-			path = DataManager;
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		65C17A992065481800EE9314 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				656F9BA72063004400F0C311 /* AppDelegate.swift */,
+				656F9BAE2063004400F0C311 /* Assets.xcassets */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		65C17A9F2065567400EE9314 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				656F9BAB2063004400F0C311 /* Main.storyboard */,
+				656F9BB02063004400F0C311 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +319,7 @@
 			files = (
 				656F9BDA20643AFB00F0C311 /* TwitchGames.xcdatamodeld in Sources */,
 				656F9BD7206433A200F0C311 /* GameCollectionViewCell.swift in Sources */,
+				65C17A9B2065488000EE9314 /* ReachabilityManager.swift in Sources */,
 				656F9BD5206432F200F0C311 /* Screen.swift in Sources */,
 				6501D7DE2064400400F6E05E /* DetailTitleTableViewCell.swift in Sources */,
 				656F9BD12063F10500F0C311 /* Game.swift in Sources */,
