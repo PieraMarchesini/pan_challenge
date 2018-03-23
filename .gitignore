@@ -28,6 +28,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
+
 ### Swift ###
 # Xcode
 #
@@ -105,4 +107,16 @@ fastlane/test_output
 /*.gcno
 
 
-# End of https://www.gitignore.io/api/xcode,swift,macos
+
+# Created by https://www.gitignore.io/api/carthage
+
+### Carthage ###
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build
+
+
+# End of https://www.gitignore.io/api/carthage
