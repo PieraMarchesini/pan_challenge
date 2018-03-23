@@ -11,13 +11,15 @@ import Reachability
 
 private let reuseIdentifier = "Cell"
 
-class GamesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NetworkStatusListener {
+class GamesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NetworkStatusListener, DataManagerDelegate {
     private let dataManager = DataManager.sharedInstance
     private let refreshControl = UIRefreshControl()
+    private var loadingView:UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupPullToRefresh()
+        self.dataManager.delegate = self
         
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -32,6 +34,11 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         ReachabilityManager.shared.removeListener(listener: self)
+    }
+    
+    // MARK: - DataManagerDelegate
+    func didFinishLoading() {
+        self.hideLoadingView()
     }
     
     // MARK: - Network Status
@@ -54,7 +61,8 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: - Methods to fetch data
     
     func reloadData() {
-        dataManager.getPopularGames {
+        self.showLoadingView()
+        self.dataManager.getPopularGames {
             self.collectionView?.reloadSections(IndexSet(integer: 0))
             self.persistGames()
         }
@@ -82,10 +90,34 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
         if ReachabilityManager.shared.reachability.connection == .none {
             self.showNetworkStatusAlert()
         } else {
+            self.showLoadingView()
             self.reloadData()
         }
         self.refreshControl.endRefreshing()
     }
+    
+    func showLoadingView() {
+        
+        if self.loadingView == nil {
+            do {
+                self.loadingView = try LoadingViewController.instanceView()
+                
+            } catch {
+                print("Error showing the failed to fetch viewController")
+            }
+        }
+        DispatchQueue.main.async {
+            self.collectionView?.backgroundView = self.loadingView
+        }
+    }
+    
+    func hideLoadingView() {
+        DispatchQueue.main.async {
+            self.loadingView?.removeFromSuperview()
+            self.collectionView?.backgroundView = nil
+        }
+    }
+    
     
     // MARK : - Flow Layout
     

@@ -19,22 +19,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0i2-Me-roj">
-                                <rect key="frame" x="0.0" y="283" width="0.0" height="102.5"/>
+                                <rect key="frame" x="8" y="283" width="359" height="102.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-ga-TJc">
-                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="31.5"/>
+                                        <rect key="frame" x="123.5" y="0.0" width="112.5" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                         <color key="textColor" red="0.2947877049446106" green="0.21072381734848022" blue="0.485187828540802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Failed to get the popular games from Twitch. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAy-LJ-LJX">
-                                        <rect key="frame" x="0.0" y="35.5" width="0.0" height="31.5"/>
+                                        <rect key="frame" x="-8" y="35.5" width="0.0" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your internet connection!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpB-Wq-k9V">
-                                        <rect key="frame" x="0.0" y="71" width="0.0" height="31.5"/>
+                                        <rect key="frame" x="-8" y="71" width="0.0" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -58,6 +58,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDD-YR-UYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="96.799999999999997" y="-61.619190404797607"/>
+        </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="nhX-Hr-ZrZ">
+            <objects>
+                <viewController storyboardIdentifier="LoadingViewController" id="SUN-KU-uBy" customClass="LoadingViewController" customModule="TwitchGames" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mWh-Cb-l2S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tAV-Sg-tne">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.2947877049446106" green="0.21072381734848022" blue="0.485187828540802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tAV-Sg-tne" firstAttribute="centerY" secondItem="mWh-Cb-l2S" secondAttribute="centerY" id="Wzb-PJ-xUz"/>
+                            <constraint firstItem="tAV-Sg-tne" firstAttribute="centerX" secondItem="mWh-Cb-l2S" secondAttribute="centerX" id="cgu-Um-cTg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YaI-ds-vIs"/>
+                    </view>
+                    <connections>
+                        <outlet property="outletActivityIndicator" destination="tAV-Sg-tne" id="Zex-Nt-J93"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Kp-qB-vva" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="97" y="647"/>
         </scene>
     </scenes>
 </document>

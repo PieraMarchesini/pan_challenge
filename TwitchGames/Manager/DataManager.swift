@@ -10,8 +10,14 @@ import UIKit
 import CoreData
 import Reachability
 
+protocol DataManagerDelegate:class {
+    func didFinishLoading()
+}
+
 final class DataManager {
     static let sharedInstance = DataManager()
+    weak var delegate:DataManagerDelegate?
+    
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private let apiKey = "client_id=nw8ybs53s85wa1in5qu55fnjkphv2y"
     var games: [Games.Game] {
@@ -43,6 +49,8 @@ final class DataManager {
                 print("Error serializing json:", jsonErr)
             }
             }.resume()
+        
+        self.delegate?.didFinishLoading()
     }
     
     func loadMoreGames(offset: Int, completed: @escaping () -> ()) {
@@ -97,6 +105,8 @@ final class DataManager {
         } catch {
             print("Failed to fetch persistent games from CoreData")
         }
+        
+        self.delegate?.didFinishLoading()
         
         return persistedGames
     }
