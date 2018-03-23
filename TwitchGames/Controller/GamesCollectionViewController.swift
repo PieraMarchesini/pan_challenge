@@ -17,7 +17,6 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.reloadData()
         self.setupPullToRefresh()
 
         // Register cell classes
@@ -27,6 +26,7 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ReachabilityManager.shared.addListener(listener: self)
+        self.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -37,14 +37,16 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: - Network Status
     
     func networkStatusDidChange(status: Reachability.Connection) {
-        switch status {
-        case .none:
-            debugPrint("ViewController: Network became unreachable")
-        case .wifi:
-            debugPrint("ViewController: Network reachable through WiFi")
-        case .cellular:
-            debugPrint("ViewController: Network reachable through Cellular Data")
+        if (status == .none) {
+            showNetworkStatusAlert()
         }
+    }
+    
+    func showNetworkStatusAlert() {
+        let alert = UIAlertController(title: "Connectivity Issue", message: "Check your connection for updated results", preferredStyle: .alert)
+        alert.view.tintColor = Style.purple
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     // MARK: - Methods to fetch data
@@ -69,7 +71,11 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
     
     @objc
     private func refreshPopularGames(_ sender: Any) {
-        self.reloadData()
+        if ReachabilityManager.shared.reachability.connection == .none {
+            self.showNetworkStatusAlert()
+        } else {
+            self.reloadData()
+        }
         self.refreshControl.endRefreshing()
     }
     
@@ -102,6 +108,19 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        self.collectionView?.backgroundView?.alpha = 0
+        //Connection failed and none data was fetched
+        if self.dataManager.games.count == 0 && ReachabilityManager.shared.reachability.connection == .none {
+            self.collectionView?.backgroundView?.alpha = 1
+            do {
+                let backgroundView = try FailedToFetchDataViewController.instanceView(with: "Check your internet connection!")
+                DispatchQueue.main.async {
+                    self.collectionView?.backgroundView = backgroundView
+                }
+            } catch {
+                print("Error showing the failed to fetch viewController")
+            }
+        }
         return self.dataManager.games.count
     }
 
@@ -117,7 +136,7 @@ class GamesCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        //Pagination
+        //JSON Pagination
         if indexPath.row + 3 > self.dataManager.games.count {
             self.dataManager.loadMoreGames(offset: self.dataManager.games.count+1, completed: {
                 self.collectionView?.reloadSections(IndexSet(integer: 0))

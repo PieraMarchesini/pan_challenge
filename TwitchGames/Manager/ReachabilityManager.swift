@@ -26,15 +26,6 @@ class ReachabilityManager: NSObject {
     @objc
     func reachabilityChanged(notification: Notification) {
         let reachability = notification.object as! Reachability
-        switch reachability.connection {
-        case .none:
-            debugPrint("Network became unreachable")
-        case .wifi:
-            debugPrint("Network reachable through WiFi")
-        case .cellular:
-            debugPrint("Network reachable through Cellular Data")
-        }
-        
         for listener in listeners {
             listener.networkStatusDidChange(status: reachability.connection)
         }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Failed To Fetch Data View Controller-->
+        <scene sceneID="Cbq-QN-Gmd">
+            <objects>
+                <viewController storyboardIdentifier="FailedToFetchDataViewController" id="9s1-rC-dyt" customClass="FailedToFetchDataViewController" customModule="TwitchGames" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wFQ-mq-1se">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0i2-Me-roj">
+                                <rect key="frame" x="0.0" y="283" width="0.0" height="102.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-ga-TJc">
+                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
+                                        <color key="textColor" red="0.2947877049446106" green="0.21072381734848022" blue="0.485187828540802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Failed to get the popular games from Twitch. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAy-LJ-LJX">
+                                        <rect key="frame" x="0.0" y="35.5" width="0.0" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your internet connection!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpB-Wq-k9V">
+                                        <rect key="frame" x="0.0" y="71" width="0.0" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0i2-Me-roj" firstAttribute="centerX" secondItem="wFQ-mq-1se" secondAttribute="centerX" id="2SL-9M-dZb"/>
+                            <constraint firstItem="0i2-Me-roj" firstAttribute="leading" secondItem="9Dk-me-E2x" secondAttribute="leading" constant="8" id="B3b-F2-Ox8"/>
+                            <constraint firstItem="0i2-Me-roj" firstAttribute="centerY" secondItem="wFQ-mq-1se" secondAttribute="centerY" id="OgB-dO-VIb"/>
+                            <constraint firstItem="9Dk-me-E2x" firstAttribute="trailing" secondItem="0i2-Me-roj" secondAttribute="trailing" constant="8" id="gMQ-nC-dSq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Dk-me-E2x"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabelOutlet" destination="KpB-Wq-k9V" id="Ofj-3I-WfH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cDD-YR-UYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96.799999999999997" y="-61.619190404797607"/>
+        </scene>
+    </scenes>
+</document>
