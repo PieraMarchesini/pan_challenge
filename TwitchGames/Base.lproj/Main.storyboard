@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aJH-ey-hvL">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Popular Games-->
+        <scene sceneID="UyS-Oe-fKY">
+            <objects>
+                <collectionViewController id="A7H-dv-asg" customClass="GamesCollectionViewController" customModule="TwitchGames" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fw8-Km-0QU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z69-lD-HTe">
+                            <size key="itemSize" width="170" height="270"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="12" maxX="10" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gameCell" id="BdC-EX-ZTa" customClass="GameCollectionViewCell" customModule="TwitchGames" customModuleProvider="target">
+                                <rect key="frame" x="10" y="12" width="170" height="270"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="170" height="270"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dGO-jc-VqK">
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="216"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMS-ma-t13">
+                                            <rect key="frame" x="12" y="220" width="146" height="46"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.29088151454925537" green="0.202126145362854" blue="0.48930966854095459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="0.84140116190499814" green="0.84973186647831489" blue="0.84973186647831489" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="eMS-ma-t13" firstAttribute="top" secondItem="dGO-jc-VqK" secondAttribute="bottom" constant="4" id="1RB-w6-EQw"/>
+                                    <constraint firstItem="eMS-ma-t13" firstAttribute="leading" secondItem="BdC-EX-ZTa" secondAttribute="leadingMargin" constant="4" id="DOW-vR-boV"/>
+                                    <constraint firstItem="dGO-jc-VqK" firstAttribute="top" secondItem="BdC-EX-ZTa" secondAttribute="top" id="hsh-pJ-wmV"/>
+                                    <constraint firstAttribute="bottom" secondItem="eMS-ma-t13" secondAttribute="bottom" constant="4" id="i87-Hp-dwg"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="eMS-ma-t13" secondAttribute="trailing" constant="4" id="suP-2r-ZSa"/>
+                                    <constraint firstAttribute="trailing" secondItem="dGO-jc-VqK" secondAttribute="trailing" id="tBN-iW-CHx"/>
+                                    <constraint firstItem="dGO-jc-VqK" firstAttribute="height" secondItem="BdC-EX-ZTa" secondAttribute="height" multiplier="0.8" id="to4-Wy-Q9g"/>
+                                    <constraint firstItem="dGO-jc-VqK" firstAttribute="leading" secondItem="BdC-EX-ZTa" secondAttribute="leading" id="uci-ZQ-9fs"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageOutlet" destination="dGO-jc-VqK" id="qy9-1T-dKe"/>
+                                    <outlet property="titleOutlet" destination="eMS-ma-t13" id="IGq-Ou-1Ba"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="A7H-dv-asg" id="sW8-SK-mhT"/>
+                            <outlet property="delegate" destination="A7H-dv-asg" id="xCY-E0-TO8"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Popular Games" id="ih7-f0-VS6">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Umg-jU-CGl"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="9jj-3d-duU" kind="show" identifier="toDetailGame" id="Ee4-tx-hYz"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nEz-za-eQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="940" y="-90.404797601199405"/>
+        </scene>
+        <!--Detailed Game-->
+        <scene sceneID="ft2-vq-CxV">
+            <objects>
+                <tableViewController title="Detailed Game" id="9jj-3d-duU" customClass="DetailGameTableViewController" customModule="TwitchGames" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IC2-ab-he8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="J9w-Lv-Fe4" customClass="DetailHeaderView" customModule="TwitchGames" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sCg-1c-qah">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="sCg-1c-qah" secondAttribute="bottom" id="31p-dR-I2x"/>
+                                <constraint firstAttribute="trailing" secondItem="sCg-1c-qah" secondAttribute="trailing" id="jFv-xx-SX4"/>
+                                <constraint firstItem="sCg-1c-qah" firstAttribute="leading" secondItem="J9w-Lv-Fe4" secondAttribute="leading" id="mhp-Pj-plB"/>
+                                <constraint firstItem="sCg-1c-qah" firstAttribute="top" secondItem="J9w-Lv-Fe4" secondAttribute="top" id="xDJ-cE-wpz"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="imageView" destination="sCg-1c-qah" id="L4I-q5-fao"/>
+                            </connections>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailTitleCell" id="Foe-W6-m8h" customClass="DetailTitleTableViewCell" customModule="TwitchGames" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="488" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Foe-W6-m8h" id="kvz-iM-hp6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKJ-Fa-Qda">
+                                            <rect key="frame" x="22" y="20" width="333" height="3.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="eKJ-Fa-Qda" secondAttribute="trailing" constant="20" id="3E2-Zq-hOd"/>
+                                        <constraint firstItem="eKJ-Fa-Qda" firstAttribute="leading" secondItem="kvz-iM-hp6" secondAttribute="leading" constant="22" id="XuN-Jv-Jdm"/>
+                                        <constraint firstAttribute="bottom" secondItem="eKJ-Fa-Qda" secondAttribute="bottom" constant="20" id="bg4-ug-uQr"/>
+                                        <constraint firstItem="eKJ-Fa-Qda" firstAttribute="top" secondItem="kvz-iM-hp6" secondAttribute="top" constant="20" id="pTy-ya-e6u"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabelOutlet" destination="eKJ-Fa-Qda" id="P2M-vk-Psl"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailInfoCell" id="YOm-e5-xpD" customClass="DetailInfoTableViewCell" customModule="TwitchGames" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="532" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YOm-e5-xpD" id="mPI-u3-6f3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gn-9g-KgQ">
+                                            <rect key="frame" x="20" y="10" width="339" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svE-Bf-mcu">
+                                            <rect key="frame" x="20" y="33.5" width="339" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7gn-9g-KgQ" firstAttribute="top" secondItem="mPI-u3-6f3" secondAttribute="top" constant="10" id="5BC-6I-ciZ"/>
+                                        <constraint firstItem="svE-Bf-mcu" firstAttribute="leading" secondItem="7gn-9g-KgQ" secondAttribute="leading" id="LXR-9i-gaT"/>
+                                        <constraint firstItem="svE-Bf-mcu" firstAttribute="top" secondItem="7gn-9g-KgQ" secondAttribute="bottom" constant="4" id="Q4A-Of-aEq"/>
+                                        <constraint firstItem="svE-Bf-mcu" firstAttribute="trailing" secondItem="7gn-9g-KgQ" secondAttribute="trailing" id="QCn-5R-uPq"/>
+                                        <constraint firstAttribute="trailing" secondItem="7gn-9g-KgQ" secondAttribute="trailing" constant="16" id="syo-pm-F5i"/>
+                                        <constraint firstAttribute="bottom" secondItem="svE-Bf-mcu" secondAttribute="bottom" constant="10" id="z6G-Cc-3zh"/>
+                                        <constraint firstItem="7gn-9g-KgQ" firstAttribute="leading" secondItem="mPI-u3-6f3" secondAttribute="leading" constant="20" id="zRe-TF-F3a"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryLabelOutlet" destination="7gn-9g-KgQ" id="Xuh-0I-t7k"/>
+                                    <outlet property="descriptionLabelOutlet" destination="svE-Bf-mcu" id="qOk-Jb-5hv"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9jj-3d-duU" id="olz-6c-dIA"/>
+                            <outlet property="delegate" destination="9jj-3d-duU" id="LJR-jG-HgB"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pAn-Pb-uUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1701.5999999999999" y="-90.404797601199405"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CbF-8q-LwV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aJH-ey-hvL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="nYs-Hx-u4U">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.29487252235412598" green="0.20189636945724487" blue="0.49329417943954468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="A7H-dv-asg" kind="relationship" relationship="rootViewController" id="wm6-q6-r2E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vFK-2K-6AV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="179.19999999999999" y="-89.955022488755631"/>
+        </scene>
+    </scenes>
+</document>
